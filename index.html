@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EditWithAbi — Cinematic Video Editing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div class="bg-layer" aria-hidden="true">
+    <div class="bg-gradient"></div>
+    <div class="grid-overlay"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+  <canvas id="particles-canvas" aria-hidden="true"></canvas>
+  <div class="vignette" aria-hidden="true"></div>
+  <div class="noise-overlay" aria-hidden="true"></div>
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
+  <nav class="navbar" id="navbar">
+    <a href="#" class="logo">
+      <span class="logo-icon"><i class="fa-solid fa-clapperboard"></i></span>
+      EditWithAbi
+    </a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+    </ul>
+    <a href="#footer" class="nav-cta">Let's Connect</a>
+  </nav>
+
+  <main>
+    <section class="hero" id="hero">
+      <div class="hero-fx" aria-hidden="true">
+        <div class="hero-ring"></div>
+        <div class="hero-ring hero-ring--2"></div>
+        <div class="shuttle-trail"></div>
+        <svg class="shuttle" viewBox="0 0 120 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8 24 L45 8 L95 20 L110 24 L95 28 L45 40 L8 24Z" fill="url(#shuttleGrad)" opacity="0.9"/>
+          <path d="M45 8 L55 24 L45 40" stroke="rgba(120,78,253,0.6)" stroke-width="1"/>
+          <ellipse cx="102" cy="24" rx="6" ry="3" fill="#784efd" opacity="0.6">
+            <animate attributeName="opacity" values="0.4;1;0.4" dur="1.2s" repeatCount="indefinite"/>
+          </ellipse>
+          <defs>
+            <linearGradient id="shuttleGrad" x1="0" y1="0" x2="120" y2="48">
+              <stop stop-color="#9b7aff"/>
+              <stop offset="0.5" stop-color="#784efd"/>
+              <stop offset="1" stop-color="#3d2080"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <div class="hero-icons" id="heroIcons">
+          <div class="orbit-icon orbit-icon--play" data-depth="0.04">
+            <i class="fa-solid fa-circle-play"></i>
+            <span class="icon-label">Play</span>
+          </div>
+          <div class="orbit-icon orbit-icon--film" data-depth="0.06">
+            <i class="fa-solid fa-film"></i>
+            <span class="icon-label">Reel</span>
+          </div>
+          <div class="orbit-icon orbit-icon--timeline" data-depth="0.05">
+            <i class="fa-solid fa-bars-staggered"></i>
+            <span class="icon-label">Timeline</span>
+          </div>
+          <div class="orbit-icon orbit-icon--camera" data-depth="0.07">
+            <i class="fa-solid fa-camera-retro"></i>
+            <span class="icon-label">Shoot</span>
+          </div>
+          <div class="orbit-icon orbit-icon--cut" data-depth="0.03">
+            <i class="fa-solid fa-scissors"></i>
+            <span class="icon-label">Cut</span>
+          </div>
+          <div class="orbit-icon orbit-icon--clap" data-depth="0.055">
+            <i class="fa-solid fa-clapperboard"></i>
+            <span class="icon-label">Scene</span>
+          </div>
+          <div class="orbit-icon orbit-icon--layers" data-depth="0.045">
+            <i class="fa-solid fa-layer-group"></i>
+            <span class="icon-label">Layers</span>
+          </div>
+          <div class="orbit-icon orbit-icon--grade" data-depth="0.065">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+            <span class="icon-label">Grade</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-inner" id="heroInner">
+        <div class="hero-glow-border"></div>
+        <div class="light-sweep"></div>
+        <div class="hero-badge" data-hero-item>
+          <i class="fa-solid fa-video"></i>
+          Cinematic Video Editor
+        </div>
+        <h1 data-hero-item>
+          <span class="line"><span class="line-inner" id="heroLine1">Turning Raw Footage</span></span>
+          <span class="line"><span class="line-inner" id="heroLine2">Into <span class="highlight">Cinematic Stories</span></span></span>
+        </h1>
+        <p class="hero-sub" data-hero-item>
+          Professional video editing for creators, brands, startups, reels, ads, and cinematic content.
+        </p>
+        <div class="hero-ctas" data-hero-item>
+          <a href="#portfolio" class="btn btn-primary">
+            <span class="btn-icon btn-icon--play"><i class="fa-solid fa-circle-play"></i></span>
+            View Portfolio
+          </a>
+          <a href="#footer" class="btn btn-outline">
+            <span class="btn-icon"><i class="fa-solid fa-paper-plane"></i></span>
+            Hire Me
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-label">What I Offer</span>
+          <h2 class="section-title"><span class="glow-text">Editing Services</span></h2>
+        </div>
+        <div class="services-grid">
+          <article class="service-card reveal" data-tilt>
+            <div class="service-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
+            <h3>Reels Editing</h3>
+            <p>Scroll-stopping short-form edits with punchy pacing, trending transitions, and platform-native polish for maximum engagement.</p>
+          </article>
+          <article class="service-card reveal" data-tilt>
+            <div class="service-icon"><i class="fa-brands fa-youtube"></i></div>
+            <h3>YouTube Video Editing</h3>
+            <p>Long-form storytelling with clean cuts, dynamic motion graphics, sound design, and retention-focused structure.</p>
+          </article>
+          <article class="service-card reveal" data-tilt>
+            <div class="service-icon"><i class="fa-solid fa-rectangle-ad"></i></div>
+            <h3>Commercial & Brand Ads</h3>
+            <p>Premium brand films and ad creatives with cinematic color grading, strategic pacing, and conversion-ready delivery.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="portfolio">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-label">Selected Work</span>
+          <h2 class="section-title"><span class="glow-text">Portfolio</span></h2>
+        </div>
+        <div class="portfolio-filters reveal">
+          <button class="filter-btn active" data-filter="all"><i class="fa-solid fa-border-all"></i> All</button>
+          <button class="filter-btn" data-filter="reels"><i class="fa-solid fa-mobile-screen-button"></i> Reels</button>
+          <button class="filter-btn" data-filter="youtube"><i class="fa-brands fa-youtube"></i> YouTube</button>
+          <button class="filter-btn" data-filter="commercial"><i class="fa-solid fa-rectangle-ad"></i> Commercial</button>
+        </div>
+        <div class="portfolio-grid" id="portfolioGrid">
+          <article class="project-card span-6 tall reveal" data-category="commercial">
+            <img class="project-thumb" src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=800&q=80" alt="Brand Film" loading="lazy" />
+            <div class="project-play"><i class="fa-solid fa-circle-play"></i></div>
+            <div class="project-overlay">
+              <span class="project-category">Commercial</span>
+              <h3 class="project-title">Luxury Brand Film</h3>
+            </div>
+          </article>
+          <article class="project-card span-6 reveal" data-category="reels">
+            <img class="project-thumb" src="https://images.unsplash.com/photo-1611162616305-c69b3fa7a0be?w=800&q=80" alt="Creator Reel" loading="lazy" />
+            <div class="project-play"><i class="fa-solid fa-circle-play"></i></div>
+            <div class="project-overlay">
+              <span class="project-category">Reels</span>
+              <h3 class="project-title">Creator Launch Reel</h3>
+            </div>
+          </article>
+          <article class="project-card span-4 reveal" data-category="youtube">
+            <img class="project-thumb" src="https://images.unsplash.com/photo-1492691527719-9d1e07e269b8?w=600&q=80" alt="Travel Vlog" loading="lazy" />
+            <div class="project-play"><i class="fa-solid fa-circle-play"></i></div>
+            <div class="project-overlay">
+              <span class="project-category">YouTube</span>
+              <h3 class="project-title">Travel Documentary</h3>
+            </div>
+          </article>
+          <article class="project-card span-8 reveal" data-category="commercial">
+            <img class="project-thumb" src="https://images.unsplash.com/photo-1533750349088-cd871a166f49?w=900&q=80" alt="Product Ad" loading="lazy" />
+            <div class="project-play"><i class="fa-solid fa-circle-play"></i></div>
+            <div class="project-overlay">
+              <span class="project-category">Commercial</span>
+              <h3 class="project-title">Tech Product Launch</h3>
+            </div>
+          </article>
+          <article class="project-card span-4 reveal" data-category="reels">
+            <img class="project-thumb" src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&q=80" alt="Fashion Reel" loading="lazy" />
+            <div class="project-play"><i class="fa-solid fa-circle-play"></i></div>
+            <div class="project-overlay">
+              <span class="project-category">Reels</span>
+              <h3 class="project-title">Fashion Drop Series</h3>
+            </div>
+          </article>
+          <article class="project-card span-4 tall reveal" data-category="youtube">
+            <img class="project-thumb" src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=600&q=80" alt="Podcast Edit" loading="lazy" />
+            <div class="project-play"><i class="fa-solid fa-circle-play"></i></div>
+            <div class="project-overlay">
+              <span class="project-category">YouTube</span>
+              <h3 class="project-title">Podcast Highlights</h3>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-label">Investment</span>
+          <h2 class="section-title"><span class="glow-text">Customize Your Price</span></h2>
+          <p class="custom-pricing-sub section-sub">Tell me about your monthly needs and get an instant estimate. Final quote may vary based on project complexity.</p>
+        </div>
+
+        <div class="custom-pricing reveal" id="custom-pricing">
+          <div class="custom-pricing-layout">
+            <form class="custom-form" id="priceForm" novalidate>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="clientName"><i class="fa-solid fa-user"></i> Name</label>
+                  <input type="text" id="clientName" class="custom-input" placeholder="Your full name" autocomplete="name" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="clientWhatsapp"><i class="fa-brands fa-whatsapp"></i> WhatsApp Link</label>
+                  <input type="url" id="clientWhatsapp" class="custom-input" placeholder="https://wa.me/91XXXXXXXXXX" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="referenceLink"><i class="fa-solid fa-link"></i> Reference Link</label>
+                <input type="url" id="referenceLink" class="custom-input" placeholder="YouTube, Drive, or portfolio link for style reference" />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label"><i class="fa-solid fa-film"></i> Project Type</label>
+                <div class="type-pills" role="group" aria-label="Project type">
+                  <button type="button" class="type-pill active" data-type="reels">
+                    <i class="fa-solid fa-mobile-screen-button"></i> Reels
+                  </button>
+                  <button type="button" class="type-pill" data-type="youtube">
+                    <i class="fa-brands fa-youtube"></i> YouTube
+                  </button>
+                  <button type="button" class="type-pill" data-type="commercial">
+                    <i class="fa-solid fa-rectangle-ad"></i> Commercial
+                  </button>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="form-label-row">
+                  <label class="form-label" for="monthlyVideos"><i class="fa-solid fa-calendar-days"></i> Monthly Videos</label>
+                  <span class="form-value" id="monthlyVideosValue">8 videos / month</span>
+                </div>
+                <input type="range" id="monthlyVideos" class="custom-range" min="1" max="30" value="8" step="1" aria-describedby="monthlyVideosValue" />
+                <div class="range-ticks">
+                  <span>1</span><span>8</span><span>15</span><span>22</span><span>30</span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="revisionSelect"><i class="fa-solid fa-rotate"></i> Revisions</label>
+                <select id="revisionSelect" class="custom-select">
+                  <option value="2">2 rounds — Included</option>
+                  <option value="5">5 rounds — +$50/mo</option>
+                  <option value="unlimited">Unlimited — +$120/mo</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label"><i class="fa-solid fa-plus"></i> Add-ons <em class="form-label-note">(per month)</em></label>
+                <div class="addon-grid">
+                  <label class="addon-chip">
+                    <input type="checkbox" name="addon" value="color" />
+                    <span><i class="fa-solid fa-palette"></i> Color Grade</span>
+                    <em>+$75/mo</em>
+                  </label>
+                  <label class="addon-chip">
+                    <input type="checkbox" name="addon" value="motion" />
+                    <span><i class="fa-solid fa-shapes"></i> Motion Graphics</span>
+                    <em>+$100/mo</em>
+                  </label>
+                  <label class="addon-chip">
+                    <input type="checkbox" name="addon" value="sound" />
+                    <span><i class="fa-solid fa-volume-high"></i> Sound Design</span>
+                    <em>+$60/mo</em>
+                  </label>
+                  <label class="addon-chip">
+                    <input type="checkbox" name="addon" value="subtitles" />
+                    <span><i class="fa-solid fa-closed-captioning"></i> Subtitles</span>
+                    <em>+$40/mo</em>
+                  </label>
+                  <label class="addon-chip">
+                    <input type="checkbox" name="addon" value="rush" />
+                    <span><i class="fa-solid fa-bolt"></i> Priority Turnaround</span>
+                    <em>+$100/mo</em>
+                  </label>
+                  <label class="addon-chip">
+                    <input type="checkbox" name="addon" value="organize" />
+                    <span><i class="fa-solid fa-folder-tree"></i> Footage Organize</span>
+                    <em>+$35/mo</em>
+                  </label>
+                </div>
+              </div>
+            </form>
+
+            <aside class="estimate-card" aria-live="polite">
+              <div class="estimate-glow" aria-hidden="true"></div>
+              <p class="estimate-label">Monthly Estimate</p>
+              <div class="estimate-price" id="estimatePrice">$1,072</div>
+              <p class="estimate-period">/ month</p>
+              <p class="estimate-note" id="estimatePlan">8 Reels / month</p>
+
+              <ul class="estimate-breakdown" id="estimateBreakdown">
+                <li><span>8 × Reels @ $149</span><strong>$1,192</strong></li>
+              </ul>
+
+              <div class="estimate-meta">
+                <span><i class="fa-solid fa-video"></i> <span id="estimateVideos">8 videos / month</span></span>
+                <span><i class="fa-solid fa-infinity"></i> <span id="estimateRevisions">2 revisions</span></span>
+              </div>
+
+              <a href="#" class="btn btn-primary estimate-cta" id="estimateCta" target="_blank" rel="noopener noreferrer">
+                <span class="btn-icon"><i class="fa-brands fa-whatsapp"></i></span>
+                Send Quote on WhatsApp
+              </a>
+              <p class="estimate-disclaimer">Estimate only — I'll confirm final pricing after reviewing your reference and requirements.</p>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="footer" class="site-footer">
+    <div class="footer-glow" aria-hidden="true"></div>
+    <div class="container footer-inner">
+      <div class="footer-top reveal">
+        <div class="footer-brand">
+          <a href="#" class="footer-logo">
+            <span class="logo-icon"><i class="fa-solid fa-clapperboard"></i></span>
+            EditWithAbi
+          </a>
+          <p class="footer-tagline">
+            Professional video editor crafting cinematic stories from raw footage for creators, brands, and businesses worldwide.
+          </p>
+        </div>
+        <div class="footer-links-grid">
+          <div class="footer-col">
+            <h4>Navigate</h4>
+            <ul>
+              <li><a href="#services"><i class="fa-solid fa-chevron-right"></i> Services</a></li>
+              <li><a href="#portfolio"><i class="fa-solid fa-chevron-right"></i> Portfolio</a></li>
+              <li><a href="#pricing"><i class="fa-solid fa-chevron-right"></i> Pricing</a></li>
+              <li><a href="#footer"><i class="fa-solid fa-chevron-right"></i> Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Services</h4>
+            <ul>
+              <li><a href="#services"><i class="fa-solid fa-mobile-screen-button"></i> Reels Editing</a></li>
+              <li><a href="#services"><i class="fa-brands fa-youtube"></i> YouTube Editing</a></li>
+              <li><a href="#services"><i class="fa-solid fa-rectangle-ad"></i> Brand & Ads</a></li>
+            </ul>
+          </div>
+          <div class="footer-col footer-contact">
+            <h4>Get in Touch</h4>
+            <div class="footer-contact-item">
+              <i class="fa-solid fa-envelope"></i>
+              <a href="mailto:hello@editwithabi.com">hello@editwithabi.com</a>
+            </div>
+            <div class="footer-contact-item">
+              <i class="fa-brands fa-whatsapp"></i>
+              <a href="https://wa.me" target="_blank" rel="noopener">Chat on WhatsApp</a>
+            </div>
+            <div class="footer-contact-item">
+              <i class="fa-solid fa-location-dot"></i>
+              <span>Available Worldwide — Remote</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-cta reveal">
+        <h3>Ready to Turn Your Footage Into a Masterpiece?</h3>
+        <p>Let's collaborate on your next reel, YouTube video, or brand campaign.</p>
+        <a href="mailto:hello@editwithabi.com" class="btn btn-primary">
+          <span class="btn-icon"><i class="fa-solid fa-paper-plane"></i></span>
+          Let's Connect
+        </a>
+      </div>
+
+      <div class="footer-bottom reveal">
+        <div class="social-links">
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <i class="fa-brands fa-instagram"></i>
+            <span>Instagram</span>
+          </a>
+          <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+            <i class="fa-brands fa-youtube"></i>
+            <span>YouTube</span>
+          </a>
+          <a href="https://wa.me" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+            <i class="fa-brands fa-whatsapp"></i>
+            <span>WhatsApp</span>
+          </a>
+          <a href="https://behance.net" target="_blank" rel="noopener noreferrer" aria-label="Behance">
+            <i class="fa-brands fa-behance"></i>
+            <span>Behance</span>
+          </a>
+        </div>
+        <div class="footer-legal">
+          <p class="copyright">&copy; 2026 EditWithAbi. All Rights Reserved.</p>
+          <p class="footer-made">Crafted with <i class="fa-solid fa-heart"></i> for cinematic storytelling</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>
